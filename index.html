@@ -2,74 +2,86 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Untuk Kamu, Sayang 💖</title>
+  <title>Untuk Kamu</title>
   <style>
     body {
-      background: linear-gradient(to right, #ffafbd, #ffc3a0);
-      font-family: 'Segoe UI', sans-serif;
-      color: #fff;
+      margin: 0;
+      padding: 0;
+      font-family: 'Comic Sans MS', cursive;
+      background: pink;
       text-align: center;
-      padding: 50px;
     }
-
+    #masukanNama, #halamanCinta {
+      display: none;
+    }
     h1 {
-      font-size: 2.5em;
-      animation: fadeIn 3s ease-in-out;
+      color: deeppink;
     }
-
-    p {
-      font-size: 1.2em;
-      max-width: 600px;
-      margin: auto;
-      animation: slideUp 2s ease-in-out;
+    input, button, textarea {
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 16px;
+      border: none;
+      margin-top: 10px;
     }
-
-    .animasi-cinta {
-      font-size: 3em;
-      animation: jatuh 2s ease-in-out infinite alternate;
-      color: #fff;
+    button {
+      background-color: hotpink;
+      color: white;
+      cursor: pointer;
     }
-
-    @keyframes jatuh {
-      0% { transform: translateY(0); }
-      100% { transform: translateY(10px); }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes slideUp {
-      from { transform: translateY(50px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+    img {
+      width: 200px;
+      border-radius: 20px;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
 
-  <h1>Hai Cintaku 💌</h1>
-  <div class="animasi-cinta">❤️</div>
-  <p>
-    Aku buat halaman ini khusus untukmu.<br>
-    Mungkin sederhana, tapi ini dari hati...<br><br>
-    Aku cuma mau bilang: <strong>aku sayang kamu</strong> lebih dari yang bisa aku ucapkan.  
-  </p>
-  <p>
-    Terima kasih sudah hadir dalam hidupku, jadi warna di hari-hariku, dan pelengkap kebahagiaanku.
-  </p>
+  <div id="awal">
+    <h1>Hai, boleh tahu nama kamu? 😳</h1>
+    <input type="text" id="namaPasangan" placeholder="Nama kamu...">
+    <br>
+    <button onclick="lanjut()">Lanjut</button>
+  </div>
 
- <audio id="musik" autoplay muted loop>
-  <source src="musik/musikku.mp3" type="audio/mpeg">
-</audio>
+  <div id="masukanNama">
+    <h1>Hmm... <span id="namaTampil"></span>, kamu tau gak?</h1>
+    <p>Setiap detik aku mikirin kamu 😍</p>
+    <button onclick="tampilkanHalamanCinta()">Aku juga mikirin kamu 😚</button>
+  </div>
 
-<script>
-  const musik = document.getElementById("musik");
-  musik.muted = false;
-  musik.play().catch(() => {
-    alert("Klik layar dulu supaya musik bisa diputar 💕");
-  });
-</script>
+  <div id="halamanCinta">
+    <audio autoplay loop id="musik">
+      <source src="musik/musikku.mp3" type="audio/mpeg">
+    </audio>
+
+    <h1>❤️ Hai <span id="namaCinta"></span>, aku jatuh cinta sama kamu ❤️</h1>
+    <p>Maaf ya, aku terlalu suka senyummu 😳</p>
+    <img src="gambar/pasangan.jpg" alt="Pasangan Kita">
+
+    <h2>💌 Tulis balasan kamu:</h2>
+    <textarea placeholder="Tulis perasaan kamu di sini..."></textarea><br>
+    <button>Kirim ❤️</button>
+  </div>
+
+  <script>
+    function lanjut() {
+      let nama = document.getElementById('namaPasangan').value;
+      if(nama !== "") {
+        document.getElementById('awal').style.display = 'none';
+        document.getElementById('masukanNama').style.display = 'block';
+        document.getElementById('namaTampil').innerText = nama;
+        document.getElementById('namaCinta').innerText = nama;
+      }
+    }
+
+    function tampilkanHalamanCinta() {
+      document.getElementById('masukanNama').style.display = 'none';
+      document.getElementById('halamanCinta').style.display = 'block';
+      document.getElementById('musik').play().catch(()=>{});
+    }
+  </script>
 
 </body>
 </html>
