@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
@@ -38,12 +38,20 @@
       border-radius: 10px;
       margin-top: 20px;
     }
-    #fotoTambahan {
-      margin-top: 30px;
+    video {
+      width: 80%;
+      max-width: 500px;
+      border-radius: 12px;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
+
+  <!-- Musik Otomatis -->
+  <audio autoplay loop id="musik">
+    <source src="musik/musikku.mp3" type="audio/mpeg">
+  </audio>
 
   <div id="awal">
     <h1>Hai, boleh tahu nama kamu? 😊</h1>
@@ -58,29 +66,23 @@
   </div>
 
   <div id="halamanCinta">
-    <audio autoplay loop id="musik">
-      <source src="musik/musikku.mp3" type="audio/mpeg">
-    </audio>
-
     <h1>Dear <span id="namaCinta"></span>,</h1>
     <p>Terima kasih sudah hadir di hidupku. Tanpa kamu, rasanya ada yang kurang.</p>
-    <img src="gambar/gambar/IMG_3721.jpg" alt="Foto Kita">
+    <img src="gambar/IMG_3721.jpeg" alt="Foto Kita">
 
     <h2>Kamu mau balas sesuatu? 😊</h2>
     <textarea id="pesanBalasan" placeholder="Tulis isi hatimu di sini..."></textarea><br>
     <button onclick="kirimBalasan()">Kirim</button>
   </div>
 
- <div id="balasanDiterima">
-  <h2>Makasih udah balas pesanku 😍</h2>
-  <p>Aku punya video spesial buat kamu:</p>
-  <video controls autoplay width="300">
-    <source src="video/200aad9c-bd35-48e9-9bae-33e8f367134a.mp4" type="video/mp4">
-    Maaf, browser kamu tidak mendukung video ini.
-  </video>
-  <p>Setiap detik bersamamu adalah kisah indah. Aku harap kamu suka videonya 💖</p>
-</div>
-
+  <div id="balasanDiterima">
+    <h2>Makasih udah balas pesanku 😍</h2>
+    <p>Aku punya video spesial buat kamu:</p>
+    <video id="videoCinta" autoplay muted controls style="display: none;">
+      <source src="vidio/92d64777-dea9-41a1-97fd-d36775f09a41.MP4" type="video/mp4">
+      Maaf, browser kamu tidak mendukung video ini.
+    </video>
+    <p>Setiap detik bersamamu adalah kisah indah. Aku harap kamu suka videonya 💖</p>
   </div>
 
   <script>
@@ -105,12 +107,26 @@
       if (pesan !== "") {
         document.getElementById('halamanCinta').style.display = 'none';
         document.getElementById('balasanDiterima').style.display = 'block';
+
+        const musik = document.getElementById('musik');
+        if (musik) musik.pause();
+
+        const video = document.getElementById('videoCinta');
+        if (video) {
+          video.muted = false;
+          video.style.display = 'block';
+          const promise = video.play();
+          if (promise !== undefined) {
+            promise.catch(err => {
+              console.log("Video gagal diputar:", err);
+            });
+          }
+        }
       } else {
         alert("Tulis dulu balasannya ya 😊");
       }
     }
 
-    // Tampilkan halaman awal saat load
     window.onload = () => {
       document.getElementById('awal').style.display = 'block';
     };
