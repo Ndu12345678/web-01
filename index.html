@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
@@ -7,48 +7,54 @@
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Comic Sans MS', cursive;
-      background: pink;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #fbc2eb, #a6c1ee);
       text-align: center;
+      color: #333;
     }
-    #masukanNama, #halamanCinta {
+    h1, h2, p {
+      margin: 20px;
+    }
+    #awal, #masukanNama, #halamanCinta, #balasanDiterima {
       display: none;
-    }
-    h1 {
-      color: deeppink;
     }
     input, button, textarea {
       padding: 10px;
-      border-radius: 10px;
+      border-radius: 8px;
       font-size: 16px;
-      border: none;
+      border: 1px solid #ccc;
       margin-top: 10px;
+      width: 80%;
+      max-width: 400px;
     }
     button {
-      background-color: hotpink;
+      background-color: #ff69b4;
       color: white;
       cursor: pointer;
+      border: none;
     }
     img {
-      width: 200px;
-      border-radius: 20px;
+      width: 250px;
+      border-radius: 10px;
       margin-top: 20px;
+    }
+    #fotoTambahan {
+      margin-top: 30px;
     }
   </style>
 </head>
 <body>
 
   <div id="awal">
-    <h1>Hai, boleh tahu nama kamu? 😳</h1>
-    <input type="text" id="namaPasangan" placeholder="Nama kamu...">
-    <br>
+    <h1>Hai, boleh tahu nama kamu? 😊</h1>
+    <input type="text" id="namaPasangan" placeholder="Masukkan nama kamu di sini..."><br>
     <button onclick="lanjut()">Lanjut</button>
   </div>
 
   <div id="masukanNama">
-    <h1>Hmm... <span id="namaTampil"></span>, kamu tau gak?</h1>
-    <p>Setiap detik aku mikirin kamu 😍</p>
-    <button onclick="tampilkanHalamanCinta()">Aku juga mikirin kamu 😚</button>
+    <h1>Halo <span id="namaTampil"></span>!</h1>
+    <p>Aku cuma mau bilang kalau kamu itu sangat spesial ❤️</p>
+    <button onclick="tampilkanHalamanCinta()">Aku juga merasa begitu</button>
   </div>
 
   <div id="halamanCinta">
@@ -56,19 +62,31 @@
       <source src="musik/musikku.mp3" type="audio/mpeg">
     </audio>
 
-    <h1>❤️ Hai <span id="namaCinta"></span>, aku jatuh cinta sama kamu ❤️</h1>
-    <p>Maaf ya, aku terlalu suka senyummu 😳</p>
-    <img src="gambar/pasangan.jpg" alt="Pasangan Kita">
+    <h1>Dear <span id="namaCinta"></span>,</h1>
+    <p>Terima kasih sudah hadir di hidupku. Tanpa kamu, rasanya ada yang kurang.</p>
+    <img src="gambar/gambar/IMG_3721.jpg" alt="Foto Kita">
 
-    <h2>💌 Tulis balasan kamu:</h2>
-    <textarea placeholder="Tulis perasaan kamu di sini..."></textarea><br>
-    <button>Kirim ❤️</button>
+    <h2>Kamu mau balas sesuatu? 😊</h2>
+    <textarea id="pesanBalasan" placeholder="Tulis isi hatimu di sini..."></textarea><br>
+    <button onclick="kirimBalasan()">Kirim</button>
+  </div>
+
+ <div id="balasanDiterima">
+  <h2>Makasih udah balas pesanku 😍</h2>
+  <p>Aku punya video spesial buat kamu:</p>
+  <video controls autoplay width="300">
+    <source src="video/200aad9c-bd35-48e9-9bae-33e8f367134a.mp4" type="video/mp4">
+    Maaf, browser kamu tidak mendukung video ini.
+  </video>
+  <p>Setiap detik bersamamu adalah kisah indah. Aku harap kamu suka videonya 💖</p>
+</div>
+
   </div>
 
   <script>
     function lanjut() {
-      let nama = document.getElementById('namaPasangan').value;
-      if(nama !== "") {
+      let nama = document.getElementById('namaPasangan').value.trim();
+      if (nama !== "") {
         document.getElementById('awal').style.display = 'none';
         document.getElementById('masukanNama').style.display = 'block';
         document.getElementById('namaTampil').innerText = nama;
@@ -79,8 +97,23 @@
     function tampilkanHalamanCinta() {
       document.getElementById('masukanNama').style.display = 'none';
       document.getElementById('halamanCinta').style.display = 'block';
-      document.getElementById('musik').play().catch(()=>{});
+      document.getElementById('musik').play().catch(() => {});
     }
+
+    function kirimBalasan() {
+      const pesan = document.getElementById('pesanBalasan').value.trim();
+      if (pesan !== "") {
+        document.getElementById('halamanCinta').style.display = 'none';
+        document.getElementById('balasanDiterima').style.display = 'block';
+      } else {
+        alert("Tulis dulu balasannya ya 😊");
+      }
+    }
+
+    // Tampilkan halaman awal saat load
+    window.onload = () => {
+      document.getElementById('awal').style.display = 'block';
+    };
   </script>
 
 </body>
