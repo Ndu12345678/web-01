@@ -1,0 +1,82 @@
+body {
+  background-color: #fff0f5;
+  font-family: 'Comic Sans MS', cursive;
+  text-align: center;
+  padding: 30px;
+  overflow: hidden;
+}
+
+h1 {
+  color: #e60073;
+  font-size: 42px;
+  margin-top: 20px;
+}
+
+p {
+  color: #b30059;
+  font-size: 20px;
+}
+
+.heart {
+  font-size: 60px;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.falling-text {
+  position: absolute;
+  top: -50px;
+  animation: fall 8s linear infinite;
+  font-size: 24px;
+  color: #ff3399;
+  opacity: 0.8;
+}
+
+@keyframes fall {
+  0% { top: -50px; opacity: 1; }
+  100% { top: 100vh; opacity: 0; }
+}
+
+form {
+  background: #ffe6f0;
+  padding: 20px;
+  border-radius: 15px;
+  display: inline-block;
+  margin-top: 30px;
+  box-shadow: 0 0 10px #ff99cc;
+}
+
+input, textarea {
+  width: 300px;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #ff99cc;
+  border-radius: 10px;
+  font-size: 16px;
+  background-color: #fff5f9;
+}
+
+button {
+  background-color: #ff66b2;
+  color: white;
+  padding: 10px 20px;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ff3385;
+}
+
+img {
+  margin: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 10px #ff66b2;
+}
